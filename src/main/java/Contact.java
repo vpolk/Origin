@@ -1,5 +1,7 @@
 /**
  * Created by polkymour on 25/10/2016.
+ *
+ * bla hh
  */
 public class Contact {
 
