@@ -2,7 +2,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
 
-import java.util.List;
+import java.security.Key;
+import java.util.*;
 
 
 /**
@@ -36,7 +37,13 @@ import java.util.List;
  }
  }
 
-
+ for (Contact myContact : phoneBook) {
+ System.out.println("");
+ System.out.println("Name:" + " " + (myContact.getName()));
+ System.out.println("Number:" + " " + (myContact.getPhoneNumber()));
+ System.out.println("Address:" + " " + (myContact.getAddress()));
+ System.out.println("Gender:" + " " + (myContact.getGender()));
+ System.out.println("_ _ _");
 
 
 
@@ -44,21 +51,21 @@ import java.util.List;
  */
 public class OutputPrinter {
 
-    ObjectMapper mapper = new ObjectMapper();
+
     final static Logger logger = Logger.getLogger(Controller.class);
+    InputReader input = new InputReader();
 
-    void printPhoneBook(List<Contact> phoneBook) {
 
-        for (Contact myContact : phoneBook) {
-            System.out.println("");
-            System.out.println("Name:" + " " + (myContact.getName()));
-            System.out.println("Number:" + " " + (myContact.getPhoneNumber()));
-            System.out.println("_ _ _");
 
-        }
-    }
 
-    public String printPhoneBookAsJsonString(List<Contact> phoneBook){
+
+
+    public void printPhoneBook(HashMap<String, Contact> phoneBook)  {
+                System.out.println(phoneBook + "did map work?");
+                }
+
+
+    public String printPhoneBookAsJsonString(HashMap<String, Contact> phoneBook){
 
         ObjectMapper mapper = new ObjectMapper();
         String myPhoneBook = new String();
@@ -74,5 +81,7 @@ public class OutputPrinter {
 
         return myPhoneBook;
     }
+
+
 }
 

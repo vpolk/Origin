@@ -1,21 +1,43 @@
+import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
+
 /**
  * Created by polkymour on 25/10/2016.
  *
  * bla hh
  */
-public class Contact {
+public class Contact  {
 
     private String name;
     private String phoneNumber;
+    private String gender;
+    private String address;
 
 
-    public Contact(String name, String phoneNumber) {
+    public Contact(String name, String phoneNumber, String address, String gender) {
         this.name = name;
         this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.gender = gender;
     }
 
-    public Contact() {
 
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getGender() {
+        return gender;
+
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     public String getName() {
@@ -39,8 +61,11 @@ public class Contact {
         return "Contact{" +
                 "name='" + name + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
+                ", address='" + address + '\'' +
+                ", gender='" + gender + '\'' +
                 '}';
     }
+
 }
 
 

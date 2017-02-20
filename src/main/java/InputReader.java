@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class InputReader   {
 
     Scanner userInput = new Scanner(System.in);
-    final static Logger logger = Logger.getLogger(Controller.class);
+    static Logger logger = Logger.getLogger(Controller.class);
 
 
 
@@ -31,10 +31,16 @@ public class InputReader   {
 
         } else {
 
-            String phoneNumber;
-            System.out.print("Enter phone number:");
-            phoneNumber = userInput.nextLine();
+           String phoneNumber;
+           System.out.print("Enter phone number:");
+           phoneNumber = userInput.nextLine();
            logger.debug("Ph.Number is " + phoneNumber);
+           String address;
+           System.out.print("Enter address:");
+           address = userInput.nextLine();
+           String gender;
+           System.out.print("Enter gender:");
+           gender = userInput.nextLine();
 
 
             if (phoneNumber.equals("")) {
@@ -42,7 +48,7 @@ public class InputReader   {
 
             } else {
 
-                Contact myContact = new Contact(name, phoneNumber);
+                Contact myContact = new Contact(name, phoneNumber, address, gender);
                 return (myContact);
             }
         }

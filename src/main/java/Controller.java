@@ -3,7 +3,11 @@ import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 
 /**
  * Created by polkymour on 25/10/2016.
@@ -39,15 +43,24 @@ import java.util.List;
 
 public class Controller {
 
-    final static Logger logger = Logger.getLogger(Controller.class);
-    public static List<Contact> phoneBook = new ArrayList();
-    public static InputReader inputReader = new InputReader();
-    public static OutputPrinter outputPrinter = new OutputPrinter();
-    public static WriteContactsToFile writeContactsToFile = new WriteContactsToFile();
-    public static ReadContactsFromFile readContactsFromFile = new ReadContactsFromFile();
+    final Logger logger = Logger.getLogger(Controller.class);
+
+    public InputReader inputReader = new InputReader();
+    public OutputPrinter outputPrinter = new OutputPrinter();
+    public WriteContactsToFile writeContactsToFile = new WriteContactsToFile();
+    public FileContentsReader fileContentsReader = new FileContentsReader();
+    public HashMap<String, Contact> phoneBook = new HashMap<String, Contact>();
+
+
+
+
 
     public static void main(String[] args) throws IOException {
+        Controller controller = new Controller();
+        controller.runController();
+    }
 
+    protected void runController() throws IOException {
         while (true) {
             try {
                 Contact myContact = inputReader.readAContact();
@@ -56,16 +69,28 @@ public class Controller {
                     System.out.println("Contacts entered");
                     break;
                 } else {
-                    phoneBook.add(myContact);
+                    String name = myContact.getName();
+                    phoneBook.put(name, myContact);
                 }
             } catch (DonaldTrumpException e) {
                 logger.error("Caught DonaldTrumpException: ", e);
             }
         }
+        printPhoneBookAllFormats();
+        setFilePathAndWriteContactsToFile();
+
+        fileContentsReader.setPhoneBookPath("C:\\Users\\polkymour\\IdeaProjects\\PhoneBookRemodelled\\PhoneBook.csv");
+        fileContentsReader.readContactsFromFile();
+        System.out.println(fileContentsReader.readContactsFromFile());
+            }
+
+    protected void printPhoneBookAllFormats() {
         outputPrinter.printPhoneBook(phoneBook);
         outputPrinter.printPhoneBookAsJsonString(phoneBook);
+    }
+    protected void setFilePathAndWriteContactsToFile() throws IOException{
+        writeContactsToFile.setPhoneBookPath("C:\\Users\\polkymour\\IdeaProjects\\PhoneBookRemodelled\\PhoneBook.csv");
         writeContactsToFile.writeContactsToFile(phoneBook);
-        readContactsFromFile.readContactsFromFile();
 
     }
  }

@@ -8,7 +8,12 @@
     <artifactId>torie</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+
+
+
     <dependencies>
+
+
 
     <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
@@ -27,6 +32,20 @@
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+
+
 
 
     </dependencies>
